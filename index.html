@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Dia dos Namorados, Meu Amor!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('Eu e ela.jpeg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #6a053c;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.5); 
+            backdrop-filter: blur(8px); 
+            -webkit-backdrop-filter: blur(8px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 10;
+            position: relative;
+            margin-top: auto;
+            margin-bottom: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            flex-grow: 1;
+        }
+        h1 {
+            color: #d81b60;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-shrink: 1;
+        }
+
+        .carousel-container {
+            width: 100%;
+            max-width: 500px;
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+        }
+
+        .carousel-slide {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide img {
+            min-width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        audio {
+            display: none;
+        }
+
+        #playMusicButton {
+            background-color: #d81b60;
+            background-image: linear-gradient(to right, #d81b60 0%, #ff527b 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 25px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        #playMusicButton:hover {
+            background-image: linear-gradient(to right, #ff527b 0%, #d81b60 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #playMusicButton:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            background-image: linear-gradient(to right, #d81b60 0%, #ff527b 100%);
+        }
+
+        .character-photo {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #ff527b;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 5;
+            transition: transform 0.3s ease;
+        }
+
+        .character-photo:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        #char-top-left { top: 50px; left: 50px; }
+        #char-top-right { top: 50px; right: 50px; }
+        #char-bottom-left { bottom: 50px; left: 50px; }
+        #char-bottom-right { bottom: 50px; right: 50px; }
+        #char-middle-left { top: 50%; left: 20px; transform: translateY(-50%); }
+        #char-middle-right { top: 50%; right: 20px; transform: translateY(-50%); }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                min-height: auto;
+            }
+
+            .container {
+                padding: 15px;
+                width: 95%;
+            }
+
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 10px;
+            }
+
+            p {
+                font-size: 1em;
+                line-height: 1.4;
+                margin-bottom: 10px;
+            }
+
+            .carousel-container {
+                height: 250px;
+                margin: 10px auto;
+            }
+
+            #playMusicButton {
+                padding: 10px 20px;
+                font-size: 1em;
+                margin-top: 15px;
+            }
+
+            .character-photo {
+               display: none;
+            }
+
+            #char-top-left { top: 10px; left: 10px; }
+            #char-top-right { top: 10px; right: 10px; }
+            #char-bottom-left { bottom: 10px; left: 10px; }
+            #char-bottom-right { bottom: 10px; right: 10px; }
+
+            #char-middle-left, #char-middle-right {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            p {
+                font-size: 0.9em;
+                line-height: 1.3;
+            }
+            .carousel-container {
+                height: 180px;
+            }
+            #playMusicButton {
+                font-size: 0.9em;
+                padding: 8px 15px;
+            }
+            .character-photo {
+                width: 50px;
+                height: 50px;
+            }
+            #char-top-left { top: 5px; left: 5px; }
+            #char-top-right { top: 5px; right: 5px; }
+            #char-bottom-left { bottom: 5px; left: 5px; }
+            #char-bottom-right { bottom: 5px; right: 5px; }
+        }
+
+    </style>
+</head>
+<body>
+    <img src="personagem1.jpeg" alt="Personagem 1" class="character-photo" id="char-top-left">
+    <img src="personagem2.jpeg" alt="Personagem 2" class="character-photo" id="char-top-right">
+    <img src="personagem3.png" alt="Personagem 3" class="character-photo" id="char-bottom-left">
+    <img src="personagem4.jpg" alt="Personagem 4" class="character-photo" id="char-bottom-right">
+    <img src="personagem5.jpeg" alt="Personagem 5" class="character-photo" id="char-middle-left">
+    <img src="personagem6.png" alt="Personagem 6" class="character-photo" id="char-middle-right">
+    <div class="container">
+        <h1>Feliz Dia dos Namorados, Meu! ❤️</h1>
+        
+        <p>
+           Minha princesa, neste Dia dos Namorados, quero te lembrar o quanto você é especial para mim. Dividir os momentos da vida com você é tudo que eu preciso, te ter ao meu lado nos momentos bons e ruins, ter a sua companhia é o maior presente que já ganhei. Espero que nosso amor, respeito e admiração pelo outro cresça cada vez mais e mais. Eu te amo daqui até a enternidade. A vida é boa, mas é muito melhor com você!
+        </p>
+        
+        <div class="carousel-container">
+            <div class="carousel-slide" id="carouselSlide">
+                <img src="foto1.jpg" alt="Nós dois juntos 1">
+                <img src="foto2.jpg" alt="Nós dois juntos 2">
+                <img src="foto3.jpg" alt="Nós dois juntos 3">
+                <img src="foto4.jpg" alt="Nós dois juntos 3">
+                <img src="foto5.jpg" alt="Nós dois juntos 3">
+                <img src="foto6.jpg" alt="Nós dois juntos 3">
+                <img src="foto7.jpg" alt="Nós dois juntos 3">
+            </div>
+        </div>
+        
+        <button id="playMusicButton">Tocar Música Romântica 🎶</button>
+
+        <audio id="musicaDeFundo" loop>
+            <source src="musica.mp3" type="audio/mpeg">
+            Seu navegador não suporta o elemento de áudio.
+        </audio>
+
+        <p style="margin-top: 15px;">Com todo meu amor!</p>
+    </div>
+
+    <script>
+        const carouselSlide = document.getElementById('carouselSlide');
+        const images = carouselSlide.querySelectorAll('img');
+        let currentImageIndex = 0;
+        const totalImages = images.length;
+
+        function nextImage() {
+            currentImageIndex++;
+            if (currentImageIndex >= totalImages) {
+                currentImageIndex = 0;
+            }
+            carouselSlide.style.transform = `translateX(-${currentImageIndex * 100}%)`;
+        }
+
+        setInterval(nextImage, 3000);
+
+        const musica = document.getElementById('musicaDeFundo');
+        const playButton = document.getElementById('playMusicButton');
+
+        playButton.addEventListener('click', function() {
+            if (musica.paused) {
+                musica.play()
+                    .then(() => {
+                        playButton.textContent = 'Música Tocando... 🎶';
+                    })
+                    .catch(error => {
+                        console.error('Erro ao tentar tocar a música:', error);
+                        playButton.textContent = 'Erro ao tocar música 😢';
+                    });
+            } else {
+                musica.pause();
+                playButton.textContent = 'Tocar Música Romântica 🎶';
+            }
+        });
+
+        musica.addEventListener('ended', function() {
+            playButton.textContent = 'Tocar Música Romântica 🎶';
+        });
+
+        musica.addEventListener('pause', function() {
+            playButton.textContent = 'Tocar Música Romântica 🎶';
+        });
+
+    </script>
+</body>
+</html>
